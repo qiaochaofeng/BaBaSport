@@ -1,0 +1,51 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/task
+   		http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://code.alibabatech.com/schema/dubbo        
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+		
+		
+		<!-- 1. 跟当前服务起个名    因为 注册中心需要使用 -->
+		<dubbo:application name="babasport-service-product"/>
+		<!-- 2. 连接注册中心 -->
+<!-- 		<dubbo:registry address="192.168.200.128:2181" protocol="zookeeper"/> -->
+		<!-- 设置直连 -->
+		<dubbo:registry address="N/A"/>
+		<!-- 3. 标记自己的ip和端口 -->
+		<dubbo:protocol port="20880" host="127.0.0.1"/>
+		<!-- 4. 注册接口 -->
+		<dubbo:service interface="cn.itcast.core.service.Test_tbService" ref="Test_tbServiceImpl"/>
+		<dubbo:service interface="cn.itcast.core.service.brand.BrandService" ref="brandServiceImpl"/>
+		<!-- 图片上传 -->
+		<dubbo:service interface="cn.itcast.core.service.brand.UploadSerivce" ref="uploadServiceImpl"/>
+		<!-- 测试根据id查询商品 -->
+		<dubbo:service interface="cn.itcast.core.service.TestTbProductService" ref="testTbProductServiceImpl"/>
+		<!-- 商品列表 -->
+		<dubbo:service interface="cn.itcast.core.service.product.ProductService" ref="productSeriveImpl"/>
+		<!-- 颜色 -->
+		<dubbo:service interface="cn.itcast.core.service.color.ColorService" ref="colorServiceImpl"/>
+		<!-- 库存列表 -->
+		<dubbo:service interface="cn.itcast.core.service.sku.SkuService" ref="skuServiceImpl"/>
+		<!-- 广告栏位 -->
+		<dubbo:service interface="cn.itcast.core.service.position.PositionService" ref="positionServiceImpl"/>
+		<!-- 广告 -->
+		<dubbo:service interface="cn.itcast.core.service.ad.AdService" ref="adServiceImpl"/>
+		
+</beans>
+
